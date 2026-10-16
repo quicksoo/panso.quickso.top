@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quick Pan 网盘搜索" />
+    <title>Quick Pan | 网盘搜索</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Quick Pan 首页"><span class="brand-mark">QP</span><span>Quick Pan</span></a>
+      <nav aria-label="主导航">
+        <a class="active" href="#search">搜索</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="themeButton" type="button" aria-label="切换颜色主题" title="切换颜色主题">&#9790;</button>
+        <span class="api-indicator" title="由 Quick Pan 搜索服务提供"><span class="connection-dot connected"></span>搜索服务</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="search-hero" id="search">
+        <div class="hero-copy">
+          <p class="eyebrow">QUICK PAN SEARCH</p>
+          <p class="hero-short">聚合检索公开可访问的网盘资源</p>
+        </div>
+        <form class="search-shell" id="searchForm">
+          <details class="network-selector" id="cloudTypePicker">
+            <summary><span id="cloudTypeLabel">全部网盘</span><span class="selector-arrow" aria-hidden="true">&#8964;</span></summary>
+            <div class="cloud-type-options" id="cloudTypeOptions">
+              <label><input type="checkbox" value="quark" />夸克</label>
+              <label><input type="checkbox" value="baidu" />百度</label>
+              <label><input type="checkbox" value="aliyun" />阿里</label>
+              <label><input type="checkbox" value="tianyi" />天翼</label>
+              <label><input type="checkbox" value="uc" />UC</label>
+              <label><input type="checkbox" value="mobile" />移动</label>
+              <label><input type="checkbox" value="115" />115</label>
+              <label><input type="checkbox" value="xunlei" />迅雷</label>
+              <label><input type="checkbox" value="123" />123</label>
+              <label><input type="checkbox" value="pikpak" />PikPak</label>
+              <label><input type="checkbox" value="guangya" />光鸭</label>
+              <label><input type="checkbox" value="magnet" />磁力</label>
+              <label><input type="checkbox" value="ed2k" />电驴</label>
+            </div>
+          </details>
+          <label class="search-input-wrap" for="query">
+            <span class="search-symbol" aria-hidden="true">&#9906;</span>
+            <input id="query" name="query" type="search" autocomplete="off" placeholder="输入关键词，检索本地 PanSou" />
+            <kbd>Enter</kbd>
+          </label>
+          <button class="primary-button" type="submit">开始检索</button>
+        </form>
+        <div class="popular" aria-label="热门检索">
+          <span>试试搜索</span>
+          <button type="button" data-query="设计系统">设计系统</button>
+          <button type="button" data-query="前端工程化">前端工程化</button>
+          <button type="button" data-query="数据可视化">数据可视化</button>
+          <button type="button" data-query="产品设计">产品设计</button>
+        </div>
+        <div class="recent-searches" id="recentSearches" hidden>
+          <span>最近搜索</span><div id="historyList"></div><button id="clearHistory" type="button" title="清空最近搜索">&#215;</button>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="搜索结果">
+        <aside class="filters">
+          <p class="filter-caption">网盘分类</p>
+          <div id="platformFilters"><p class="filter-placeholder">搜索后显示</p></div>
+        </aside>
+
+        <div class="results-area">
+          <div class="result-toolbar">
+            <div><p class="result-kicker">QUICK PAN SEARCH</p><h2 id="resultTitle">等待检索</h2></div>
+            <a class="back-home" href="#top">返回首页 &#8594;</a>
+          </div>
+          <p class="result-summary" id="resultSummary">先连接本机 PanSou 服务，再输入关键词开始检索。</p>
+          <div class="result-list" id="resultList"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <p>没有匹配的结果</p>
+            <span>换一个关键词，或放宽左侧筛选条件。</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <dialog id="detailDialog">
+      <article class="dialog-content">
+        <button class="dialog-close icon-button" id="closeDialog" type="button" aria-label="关闭详情">&#215;</button>
+        <p class="eyebrow" id="dialogSource"></p>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription"></p>
+        <dl id="dialogMeta"></dl>
+        <div class="dialog-actions">
+          <button class="secondary-button" id="dialogCopy" type="button">复制链接</button>
+          <button class="secondary-button" id="dialogCheck" type="button">检测链接</button>
+          <a class="primary-button" id="dialogLink" href="#" target="_blank" rel="noopener">打开网盘</a>
+        </div>
+        <p class="link-status" id="linkStatus" aria-live="polite"></p>
+      </article>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
