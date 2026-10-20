@@ -1,5 +1,5 @@
-// In production, serve the UI and this path from the same domain through Nginx.
-const API_BASE = window.QUICK_PAN_API_BASE || 'http://localhost:8888';
+// Vercel rewrites same-origin /api requests to the PanSou backend.
+const API_BASE = (window.QUICK_PAN_API_BASE || '').replace(/\/+$/, '');
 const platformNames = {
   baidu: '百度网盘', aliyun: '阿里云盘', quark: '夸克网盘', guangya: '光鸭云盘',
   tianyi: '天翼云盘', uc: 'UC 网盘', mobile: '移动云盘', '115': '115 网盘',
